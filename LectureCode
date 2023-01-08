@@ -1,0 +1,62 @@
+from __future__ import division
+import numpy as np
+
+#######Lecture 7###########
+#converting from a list 
+#start with a list 
+my_list1 = [1,2,3,4]
+my_array = np.array(my_list1)
+#print array 
+print(my_array)
+#make another list 
+my_list2 = [11,12,13,14]
+#make a list of lists 
+my_lists = [my_list1,my_list2]
+#make multi-demison array
+my_array2 = np.array(my_lists)
+print(my_array2)
+#get the size of the array 
+print(my_array2.shape)
+#find out the data type of the array
+print(my_array2.dtype)
+
+
+##########Lecture 8##########
+#create and array
+arr1 = np.array([1,2,3],[8,9,10])
+print(arr1)
+#multiple arrays
+print(arr1*arr1)
+#subtracr
+print(arr1-arr1)
+#arithmetic ops with scalrs on aray
+print(1/arr1)
+#exponet
+print(arr1**3)
+
+
+#########LECTURE 9#############
+#this is about indexing arrays refer to the lecture git for more info if needed 
+
+
+###########LECTURE 10###########
+#create array
+arr = np.arange(50).reshape((10,5))
+#show
+print(arr) 
+#lets transpose 
+print(arr.T)
+#taking dot product of the matrice
+np.dot(arr.T,arr)
+#for a 3d matrix 
+arr3d = np.arange(50).reshape((5,5,2))
+#show
+print(arr3d)
+#we can trapose this 3d array 
+arr3d.transpose((1,0,2))
+#if you need to get more specific use swapaxes
+arr = np.array([[1,2,3]])
+print(arr)
+arr.swapaxes(0,1)
+
+###########LECTURE 11#########
