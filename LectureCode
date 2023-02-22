@@ -60,3 +60,18 @@ print(arr)
 arr.swapaxes(0,1)
 
 ###########LECTURE 11#########
+import numpy as np 
+#universal fincations perform operations on all elements in an array 
+#arrange the numbers
+arr = np.arange(11)
+#show
+arr
+#taKING SQUARE ROOTS 
+np.sqrt(arr)
+#calcualting exponential 
+np.exp(arr)
+#binary funcations require two arrays
+#random array (normal dist)
+A = np.random.rand(10)
+#show
+A
