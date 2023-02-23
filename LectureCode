@@ -75,3 +75,142 @@ np.exp(arr)
 A = np.random.rand(10)
 #show
 A
+#random array (normal dist)
+B = np.random.randn(10)
+#show
+B
+#addition 
+np.add(A,B)
+#finding max or min between two arrays 
+np.maximum(A,B)
+##########Lecture Number 12###########
+import numpy as np 
+import matplotlib.pyplot as plt
+%matplotlib inline 
+#set array for one side of grid
+points =np.arange(-5,5,0.01)
+#create the grid 
+dx,dy=np.meshgrid(points,points)
+Show what one side looks like 
+dx
+#evaluate function
+z = (np.sin(dx) + np.sin(dy))
+#show
+z
+#plot out the 2d array 
+plt.imshow(z)
+#plot with a colorbar 
+plt.colorbar()
+#give the plot a titel 
+plt.title("Plot for sin(x)+Sin(y)")
+#lets learn how to use the numpy where 
+#firt the slow way to do things 
+A = np.array([1,2,3,4])
+B = np.array([100,200,300,400])
+#now a boolean array 
+condition = np.array([True,True,False,False])
+#using a list comprehension
+answer = [(A_val if cond else B_val) for A_val,B_val,cond in zip(A,B,condition)]
+#show the answer
+answer
+#problems include speed issues and multi-dimensional array issues 
+#now using numpy.where
+answer2 = np.where(condition,A,B)
+#show
+answer2
+#can use np.where on 2d for manipulation
+from numpy.random import randn
+arr = randn(5,5)
+#show arr
+arr 
+#sum
+arr.sum()
+#can also do along an axis (we should expect a 3 diff between the colums)
+arr.sum(0)
+#mean
+arr.mean
+#standard deviation
+arr.std()
+#variance 
+arr.var()
+#also any and all for processing boolean arrays 
+bool_arr = np.array([True,False,True])
+#for all true
+bool_arr.all()
+#finally sort array 
+#create a random array
+arr = randn(5)
+#show
+arr
+#sort it 
+arr.sort
+#show
+arr
+#lets learn about unique 
+countires = np.array(['France','Germany','USA','Russia','USA','Mexico','Germany'])
+np.unique (countries)
+#in1d test values in one array
+np.in1d(['France','USA','Sweeden'],countries)
+#prduces the result array([True, True, False], dtype=bool)
+##########lecture 13##############
+import numpy as np
+#create an array 
+arr = np.arange(5)
+#saving array on disk is binary format (file extension .npy)
+np.save('my_array',arr)
+#change arr
+arr = np.arange(10)
+#show
+arr
+#lets see the original saved copy 
+np.load('my_array.npy')
+#saving multiple arrays into a zip file 
+np.savez('two_arrays.npz',x=arr,y=arr)
+#now loading multiple arrays 
+archive_array = np.load('two_arrays.npz')
+#show 
+archive_arr['x']
+#now lets remove them from the memory 
+rm my_array.npy
+rm two_arrays.npz
+File "<ipython-input-16-7d53e496e836>", line 2
+  rm my_array.np
+#now saving and loading text files
+arr = np.array([[1,2,3],[4,5,6]])
+ap.savetxt('my_test_text.txt',arr,delimiter=',')
+arr = np.loadtxt('my_test_text.txt',delimiter = ',')
+arr
+###########Lecture 14################
+import numpy as np 
+from pandas import Series,DataFrame
+import pandas as pd 
+#lets create a series (array of data and data labels, its index)
+obj = Series([3,6,9,12])
+#show 
+obj
+#lets show the values 
+obj.values
+#outputs array of values 
+#lets show the index 
+obj.index 
+#outputs array of index values 0,1,2,3 
+#now lets create a series with an index 
+#ww2 casualties 
+ww2_cas = Series([8700000,4300000,3000000,2100000,40000],index=['USSR','Germany','China','Japan','USA'])
+#show 
+ww2_cas
+#now we can use index values to select Series values 
+ww2_cas['USA']
+#outputs 400000
+#can also check with array operations 
+#check whohad casualties greater than 4 million
+ww2_cas[ww2_cas>4000000]
+#output
+  USSR  8700000
+  Germany 4300000
+#can treat series as ordered dictionary 
+#check if USSR is in Series 
+'USSR' in ww2_cas
+#output True 
+
+
