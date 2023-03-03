@@ -212,5 +212,110 @@ ww2_cas[ww2_cas>4000000]
 #check if USSR is in Series 
 'USSR' in ww2_cas
 #output True 
+###########LECTURE 15 Data Frames###########
+import numpy as np 
+from pandas import Series, DataFrame 
+import pandas as pd
+#now we will learn dataframes 
+#lets get some data to play with. Webscrape the nfl site 
+import webbrowser
+website = 'http://en.wikipedia.org/wiki/NFL_win-loss_records'
+webbrowser.open(website)
+#copy and read the data 
+nfl_frame = pd.read_clipboard()
+#show the data 
+nfl_frame
+#we can grab the column names with .columns
+nfl_frame.columns
+#Index([u'Rank',u'Team',u'Won',u'Lost','uTied*',u'Pct.',u;First Season',u'Total Games',u'Confrence'],dtype='object')
+#show specific data columns
+DataFrame(nfl_frame,columns=['Team','First Season','Total Games'])
+#what happens id we ask for a column tha does not exist
+#shows column value as index value
+#call columns 
+nfl_frame.columns
+#we can retrieve individual columns 
+nfl_frame.Team
+#or try this method for multiple word columns
+nfl_frame['Total Games']
+#we can retireve rows through indexing 
+nfl_frame.ix[3]
+#we can also assign values to entire columns 
+nfl_frame['Stadium']="Levi's Stadium"
+#show frame with value added to all 
+#puttting numbers for stadiums 
+nfl_frame["Stadium"] = np.arrange(5)
+#call columns 
+nfl_frame.columns
+#adding a series to a dataframe
+stadiums = Series(["Levis Stadium","AT&T Stadium"],index=[4,0])
+#show the data frame with the two stadium values added at the proper indexes 
+#we can also delete columns 
+del nfl_frame['Stadium']
+#show frame
+#data frames can be constructed many ways. Another way is from a dictionary of equal length l
+data = {'City':['SF','LA','NYC'],'Population':[83700,3880000,84000000]}
+city_frame=DataFrame(data)
+#show 
+####### Lecture 22 Summary Stats#########
+#now we will learn about pandas buil-in methods of summarizing data in data frames 
+import numpy as np 
+from pandas import Series,DataFrame
+import pandas as pd 
+#let create a dataframe to work with 
+arr = np.array([1,2,np.nan],[np.nan,3,4]])
+dframe1 = DataFrame(arr,index=['A','B'],columns = ['One','Two','Three'])
+
+#show
+dframe1
+#lets see the sum method in action 
+dframe1.sum()
+#notice how this ignores Nan values 
+#we can also over rows instead of columns 
+\dframe1.sum(axis=1)
+#can also grab min and max values of dataframe 
+dframe1.idxmin()
+#same deal with max, just replace min for max 
+#can also do an accumulation sum
+dframe1.cumsum()
+#a very useful feature is describe, which provides summary stats 
+dframe1.describe()
+#we can also get info on correlation and covariance 
+#now lets check correlation and covaiance on some stock prices 
+#pandas can get info off the web
+import pandas.io.data as pdweb
+#set datetime for date input 
+import datetime 
+#get closing prices 
+prices = pdweb.get_data_yahoo(['CVX','XOM','BP'],
+                                start=datetime.datetime(2010,1,1),
+                                end=datetime.datetime(2013,1,1))['Adj Close']
+#show 
+prices.head()
+#now lets get the volume trades 
+volume = pdweb.get_data_yahoo(['CVX','XOM','BP'],
+                                start=datetime.datetime(2010, 1, 1),
+                                end=datetime.datetime(2013, 1, 1))['Volume']
+#show
+volume.head()
+#lets get the return 
+rets = prices.pct_change
+#get the correlation of the stocks
+corr = rets.corr
+#lets see the prices over time to get a very rough idea of the correlation between the stocks
+prices.plot()
+import seaborn as sns 
+import matplotlib.pyplot as plt
+%matplotlib inline
+#as expected pretty strong correlation with eachother 
+sns.heatmap(rets.corr())
+#we can also check for unique values and their counts 
+#for example 
+ser1 = Series(['w','w','x','y','z','w','w','x','x','y','a','z'])
+#show 
+#grab unique values 
+ser1.unique()
+#now get the count of thye unique values 
+ser1.value_counts()
 
 
